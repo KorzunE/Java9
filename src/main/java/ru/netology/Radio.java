@@ -1,5 +1,5 @@
 package ru.netology;
-public class Radio {git 
+public class Radio {
     public int currentVolume;
     int maxVolume = 100;
     int minVolume = 0;
