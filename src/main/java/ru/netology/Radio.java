@@ -1,5 +1,7 @@
 package ru.netology;
 
+import jdk.jshell.spi.SPIResolutionException;
+
 public class Radio {
     private int currentVolume;
     private int maxVolume = 100;
@@ -33,7 +35,6 @@ public class Radio {
             currentVolume--;
         }
     }
-
 
     public int getCurrentStation() {
         return currentStation;
