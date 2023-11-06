@@ -1,5 +1,7 @@
 package ru.netology;
 
+import jdk.jshell.spi.SPIResolutionException;
+
 public class Radio {
     private int currentVolume;
     private int maxVolume = 100;
@@ -8,9 +10,18 @@ public class Radio {
     private int minStation = 0;
     private int maxStation = 9;
 
+    public Radio() {
+    }
+
+    public Radio(int minStation, int maxStation) {
+        this.minStation = minStation;
+        this.maxStation = maxStation;
+    }
+
     public int getCurrentVolume() {
         return currentVolume;
     }
+
 
     public void setCurrentVolume(int newCurrentVolume) {
         if (newCurrentVolume < minVolume) {
