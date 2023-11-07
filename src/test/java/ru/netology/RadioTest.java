@@ -62,7 +62,7 @@ public class RadioTest {
 
     @Test
     public void shouldSetPrevStation() {
-        Radio radio = new Radio(0, 20);
+        Radio radio = new Radio();
         radio.setCurrentStation(5);
         radio.prevStation();
 
@@ -161,8 +161,8 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
     @Test
-    public void shouldJumpOverStationAboveMax() {
-        Radio radio = new Radio(0,29);
+    public void shouldSetNextStationAbove30() {
+        Radio radio = new Radio(30);
         radio.setCurrentStation(29);
         radio.nextStation();
 
@@ -172,32 +172,91 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
     @Test
-    public void shouldJumpOverStationAboveMin() {
-        Radio radio = new Radio(0,29);
+    public void shouldSetPrevStationMinZero() {
+        Radio radio = new Radio(3);
+        radio.setCurrentStation(0);
         radio.prevStation();
 
-        int expected = 29;
+        int expected = 2;
         int actual = radio.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
     }
     @Test
-    public void shouldIncreaseVolume50p() {
-        Radio radio = new Radio(0, 100, 20);
-        radio.increaseVolume50p();
+    public void shouldSetStationAboveMax100() {
+        Radio radio = new Radio(100);
+        radio.setCurrentStation(100);
 
-        int expected = 40;
-        int actual = radio.getCurrentVolume();
+        int expected = 0;
+        int actual = radio.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
     }
     @Test
-    public void shouldIncreaseVolume50pAboveMax() {
-        Radio radio = new Radio(0, 100, 80);
-        radio.increaseVolume50p();
+    public void shouldSetNegativeStation() {
+        Radio radio = new Radio(2);
+        radio.setCurrentStation(-1);
+
+        int expected = 0;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldSetNextStationIfOneStation() {
+        Radio radio = new Radio(1);
+        radio.setCurrentStation(0);
+        radio.nextStation();
+
+        int expected = 0;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldSetPrevStationIfOneStation() {
+        Radio radio = new Radio(1);
+        radio.setCurrentStation(0);
+        radio.prevStation();
+
+        int expected = 0;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldSetTotalStation() {
+        Radio radio = new Radio(100);
 
         int expected = 100;
-        int actual = radio.getCurrentVolume();
+        int actual = radio.getTotalStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldSetMaxStationAboveTotalMax() {
+        Radio radio = new Radio(100);
+
+        int expected = 99;
+        int actual = radio.getMaxStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldSetMaxStationIfStationOne() {
+        Radio radio = new Radio(1);
+
+        int expected = 0;
+        int actual = radio.getMaxStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldSetNegativeTotalStation() {
+        Radio radio = new Radio(-1);
+
+        int expected = 0;
+        int actual = radio.getTotalStation();
 
         Assertions.assertEquals(expected, actual);
     }
